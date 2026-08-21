@@ -294,14 +294,12 @@
       const correct = VOCAB[correctIdx].meaning;
       const pool = new Set([correct]);
 
-      let candidates = listIndices(state.selectedList, state.wrongItems)
-        .map((index) => VOCAB[index].meaning)
+      const currentGroup = String(VOCAB[correctIdx].group);
+      let candidates = VOCAB
+        .filter((item) => String(item.group) !== currentGroup)
+        .map((item) => item.meaning)
         .filter((value) => value && value !== correct);
       candidates = Array.from(new Set(candidates));
-
-      if (candidates.length < count - 1) {
-        candidates = Array.from(new Set([...candidates, ...GLOBAL_MEANINGS.filter((value) => value !== correct)]));
-      }
 
       while (pool.size < count && candidates.length) {
         const pick = candidates[Math.floor(Math.random() * candidates.length)];
