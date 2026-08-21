@@ -300,7 +300,7 @@
       candidates = Array.from(new Set(candidates));
 
       if (candidates.length < count - 1) {
-        candidates = Array.from(new Set([...candidates, ...GLOBAL_MEANINGS.filter((value) => value !== correct)]);
+        candidates = Array.from(new Set([...candidates, ...GLOBAL_MEANINGS.filter((value) => value !== correct)]));
       }
 
       while (pool.size < count && candidates.length) {
